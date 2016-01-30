@@ -9,21 +9,20 @@ public class MainMenu extends Menu {
 
 	public MainMenu() {
 		Sound.lavender.play();
+		this.options = new String[] { "Play", "About", "Exit" };
 	}
-
-	private String[] options = { "Play", "About", "Exit" };
-	private byte selected = 0;
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {
 		super.update(game, uk, dk, enter);
 
 		if (enter) {
-			Zepp.sleep(150);
-			Sound.beep.play();
 			switch (selected) {
 			case 0:
 				game.setMenu(null);
 				game.newGame();
+				break;
+			case 1:
+				// game.setMenu(new AboutMenu());
 				break;
 			default:
 				System.exit(0);

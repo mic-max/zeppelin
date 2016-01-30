@@ -10,14 +10,14 @@ public class Menu {
 	protected byte selected = 0;
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {
-		if (uk && selected > 0) {
+		if (uk && selected > 0 || dk && selected < options.length - 1 || enter) {
 			Zepp.sleep(150);
 			Sound.beep.play();
-			selected--;
 		}
-		if (dk && selected < options.length - 1) {
-			Zepp.sleep(150);
-			Sound.beep.play();
+
+		if (uk && selected > 0) {
+			selected--;
+		} else if (dk && selected < options.length - 1) {
 			selected++;
 		}
 	}
