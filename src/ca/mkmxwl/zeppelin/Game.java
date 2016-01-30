@@ -30,6 +30,13 @@ public class Game {
 		boolean lk = keys[KeyEvent.VK_LEFT];
 		boolean rk = keys[KeyEvent.VK_RIGHT];
 
+		boolean w = keys[KeyEvent.VK_W];
+		boolean s = keys[KeyEvent.VK_S];
+		boolean a = keys[KeyEvent.VK_A];
+		boolean d = keys[KeyEvent.VK_D];
+
+		boolean shoot = keys[KeyEvent.VK_SPACE];
+
 		boolean enter = keys[KeyEvent.VK_ENTER];
 
 		if (keys[KeyEvent.VK_ESCAPE]) {
@@ -40,7 +47,7 @@ public class Game {
 		if (menu != null)
 			menu.update(this, uk, dk, enter);
 		else {
-			player.update(uk, dk, lk, rk);
+			player.update(uk, dk, lk, rk, w, s, a, d, shoot);
 			level.update();
 		}
 	}

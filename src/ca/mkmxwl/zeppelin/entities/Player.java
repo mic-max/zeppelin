@@ -13,7 +13,7 @@ public class Player extends Entity {
 		level.entities.add(this);
 	}
 
-	public void update(boolean uk, boolean dk, boolean lk, boolean rk) {
+	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d, boolean shoot) {
 		// up to go forward through door
 		// left & right to move
 		// down to crouch / hide
@@ -27,6 +27,21 @@ public class Player extends Entity {
 			x++;
 		} else if (lk) {
 			x--;
+		}
+
+		if (w) {
+			System.out.println("w");
+		} else if (s) {
+			System.out.println("s");
+		}
+		if (a) {
+			System.out.println("a");
+		} else if (d) {
+			System.out.println("d");
+		}
+
+		if (shoot) {
+			System.out.println("shoot");
 		}
 	}
 
