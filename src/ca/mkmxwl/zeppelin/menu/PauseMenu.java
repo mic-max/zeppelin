@@ -8,6 +8,8 @@ public class PauseMenu extends Menu {
 
 	public PauseMenu() {
 		this.options = new String[] { "Resume", "Exit" };
+		this.background = Sound.hongkong;
+		background.play();
 	}
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {

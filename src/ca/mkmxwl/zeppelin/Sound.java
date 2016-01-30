@@ -9,6 +9,7 @@ public class Sound {
 
 	public static Sound beep = new Sound("beep", false);
 	public static Sound lavender = new Sound("lavender", true);
+	public static Sound hongkong = new Sound("hongkong", true);
 
 	private Sound(String file, boolean loop) {
 		this.loop = loop;
@@ -38,5 +39,9 @@ public class Sound {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void stop() {
+		clip.stop();
 	}
 }

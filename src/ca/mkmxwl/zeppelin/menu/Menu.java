@@ -8,6 +8,7 @@ public class Menu {
 
 	protected String[] options;
 	protected byte selected = 0;
+	protected Sound background; // background music
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {
 		if (uk && selected > 0 || dk && selected < options.length - 1 || enter) {
@@ -15,11 +16,12 @@ public class Menu {
 			Sound.beep.play();
 		}
 
-		if (uk && selected > 0) {
+		if (uk && selected > 0)
 			selected--;
-		} else if (dk && selected < options.length - 1) {
+		else if (dk && selected < options.length - 1)
 			selected++;
-		}
+		else if (enter)
+			background.stop();
 	}
 
 	public void render(Graphics2D g) {

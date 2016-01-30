@@ -8,8 +8,9 @@ import ca.mkmxwl.zeppelin.gfx.*;
 public class MainMenu extends Menu {
 
 	public MainMenu() {
-		Sound.lavender.play();
 		this.options = new String[] { "Play", "About", "Exit" };
+		this.background = Sound.lavender;
+		background.play();
 	}
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {

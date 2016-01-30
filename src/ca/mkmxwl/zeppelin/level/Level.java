@@ -10,6 +10,7 @@ public class Level {
 
 	public Player player;
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
+	protected Sound background; // background music
 
 	public Level(String string) {
 		// load PNG image to 2d array of the level's tiles

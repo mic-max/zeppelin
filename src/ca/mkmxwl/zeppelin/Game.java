@@ -33,7 +33,6 @@ public class Game {
 		boolean enter = keys[KeyEvent.VK_ENTER];
 
 		if (keys[KeyEvent.VK_ESCAPE]) {
-			keys[KeyEvent.VK_ESCAPE] = false;
 			if (menu == null)
 				setMenu(new PauseMenu());
 		}
