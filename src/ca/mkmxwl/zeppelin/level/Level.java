@@ -21,7 +21,7 @@ public class Level {
 	}
 
 	public void render(Graphics2D g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.GRAY);
 		g.fillRect(0, 0, Zepp.WIDTH, Zepp.HEIGHT);
 		for (Entity e : entities)
 			e.render(g);

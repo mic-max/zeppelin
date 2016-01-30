@@ -3,15 +3,10 @@ package ca.mkmxwl.zeppelin.menu;
 import java.awt.*;
 
 import ca.mkmxwl.zeppelin.*;
-import ca.mkmxwl.zeppelin.gfx.*;
 
-public class MainMenu extends Menu {
+public class PauseMenu extends Menu {
 
-	public MainMenu() {
-		Sound.lavender.play();
-	}
-
-	private String[] options = { "Play", "About", "Exit" };
+	private String[] options = { "Play", "Exit" };
 	private byte selected = 0;
 
 	public void update(Game game, boolean uk, boolean dk, boolean enter) {
@@ -23,16 +18,16 @@ public class MainMenu extends Menu {
 			switch (selected) {
 			case 0:
 				game.setMenu(null);
-				game.newGame();
 				break;
 			default:
-				System.exit(0);
+				game.setMenu(new MainMenu());
 			}
 		}
 	}
 
 	public void render(Graphics2D g) {
-		g.drawImage(SpriteSheet.mainMenu.getSheet(), 0, 0, Zepp.WIDTH, Zepp.HEIGHT, null);
+		g.setColor(Color.BLACK);
+		g.fillRect(10, 10, 60, 100);
 		super.render(g);
 	}
 }
