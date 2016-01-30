@@ -39,6 +39,10 @@ public class Tilemap {
 				switch(col) {
 				case 0xFF823400:
 					toPlace = new InterchangeableFloorTile(x, y, Sprite.dirt.getSprite());
+					break;
+				case 0xFF333333:
+					toPlace = new InterchangeableWallTile(x, y, Sprite.stoneWall.getSprite());
+					break;
 				}
 				
 				tiles[y][x] = toPlace;
@@ -56,6 +60,13 @@ public class Tilemap {
 				tiles[y][x].render(g);
 			}
 		}
+	}
+	
+	// Getters 
+	
+	// Pixel precision coordinates
+	public Tile getTile(int x, int y) {
+		return tiles[y >> 5][x >> 5];
 	}
 	
 }

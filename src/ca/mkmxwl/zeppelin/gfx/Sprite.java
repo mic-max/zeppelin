@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 public class Sprite {
 
 	public static Sprite dirt = new Sprite(0, 0, SpriteSheet.tiles);
+	public static Sprite stoneWall = new Sprite(1, 0, SpriteSheet.tiles);
 	
 	private BufferedImage sprite;
 	private int width, height;

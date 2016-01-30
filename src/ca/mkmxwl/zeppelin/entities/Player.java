@@ -5,12 +5,21 @@ import java.awt.*;
 import ca.mkmxwl.zeppelin.level.*;
 
 public class Player extends Entity {
+	
+	private Level level;
+	
+	private int speed = 5;
+	private int width = 10;
+	private int height = 10;
+	public Rectangle hitbox;
 
 	public Player(Level level) {
+		this.level = level;
 		this.x = level.spawnX;
 		this.y = level.spawnY;
 		this.dir = level.spawnDir;
 		level.entities.add(this);
+		hitbox = new Rectangle(x, y, width, height);
 	}
 
 	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d, boolean shoot) {
@@ -18,16 +27,7 @@ public class Player extends Entity {
 		// left & right to move
 		// down to crouch / hide
 		// need an interact key
-		if (uk) {
-			y--;
-		} else if (dk) {
-			y++;
-		}
-		if (rk) {
-			x++;
-		} else if (lk) {
-			x--;
-		}
+		move(uk, dk, rk, lk);
 
 		if (w) {
 			System.out.println("w");
@@ -47,6 +47,67 @@ public class Player extends Entity {
 
 	public void render(Graphics2D g) {
 		g.setColor(Color.RED);
-		g.fillOval(x, y, 10, 10);
+		g.fillRect(x, y, 10, 10);
 	}
+	
+	private void move(boolean uk, boolean dk, boolean rk, boolean lk) {
+		int xChange = 0;
+		int yChange = 0;
+		
+		if(uk)
+			yChange -= speed;
+		if(dk)
+			yChange += speed;
+		if(rk)
+			xChange += speed;
+		if(lk)
+			xChange -= speed;
+		
+		moveX(xChange);
+		moveY(yChange);
+	}
+	
+	private void moveX(int xChange) {
+		if(level.map.getTile(x + xChange, y).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width + xChange, y).getWalkSolid())
+			return;
+		if(level.map.getTile(x + xChange, y + height).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width + xChange, y + height).getWalkSolid())
+			return;
+		
+		x += xChange;
+		hitbox.x = x;
+	}
+	
+	private void moveY(int yChange) {
+		if(level.map.getTile(x, y + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width, y + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x, y + height + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width, y + height + yChange).getWalkSolid())
+			return;
+		
+		y += yChange;
+		hitbox.y = y;
+	}
+	
+	private void checkMovement(int xChange, int yChange) {
+		if(level.map.getTile(x + xChange, y + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width + xChange, y + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x + xChange, y + height + yChange).getWalkSolid())
+			return;
+		if(level.map.getTile(x + width + xChange, y + height + yChange).getWalkSolid())
+			return;
+		
+		x += xChange;
+		y += yChange;
+		hitbox.x = x; hitbox.y = y;
+	}
+	
 }

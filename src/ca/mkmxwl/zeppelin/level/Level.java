@@ -12,14 +12,15 @@ public class Level {
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	protected Sound background;
 	public int spawnX, spawnY, spawnDir;
-	
-	private Tilemap map;
+	public Tilemap map;
 
 	public Level(String file, Sound sound) {
 		// load PNG image to 2d array of the level's tiles
 		background = sound;
 		background.play();
 		map = new Tilemap("/levels/room1.bmp");
+		spawnX = 32 * 10;
+		spawnY = 32 * 5;
 	}
 
 	public static void load(Game game, Level level) {
