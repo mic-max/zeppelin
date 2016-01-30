@@ -7,9 +7,9 @@ import ca.mkmxwl.zeppelin.level.*;
 public class Player extends Entity {
 
 	public Player(Level level) {
-		this.x = 0; // add level spawn locations
-		this.y = 0;
-		this.dir = 0;
+		this.x = level.spawnX;
+		this.y = level.spawnY;
+		this.dir = level.spawnDir;
 		level.entities.add(this);
 	}
 

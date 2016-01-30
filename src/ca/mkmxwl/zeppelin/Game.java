@@ -19,7 +19,7 @@ public class Game {
 	}
 
 	public void newGame() {
-		level = new Level("map1");
+		level = new Level("map1", Sound.hongkong);
 		player = new Player(level);
 	}
 

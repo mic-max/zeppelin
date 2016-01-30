@@ -10,10 +10,18 @@ public class Level {
 
 	public Player player;
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
-	protected Sound background; // background music
+	protected Sound background;
+	public int spawnX, spawnY, spawnDir;
 
-	public Level(String string) {
+	public Level(String file, Sound sound) {
 		// load PNG image to 2d array of the level's tiles
+		background = sound;
+		background.play();
+	}
+
+	public static void load(Game game, Level level) {
+		game.level.background.stop();
+		game.level = level;
 	}
 
 	public void update() {

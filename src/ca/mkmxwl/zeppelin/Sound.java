@@ -8,6 +8,7 @@ public class Sound {
 	private boolean loop;
 
 	public static Sound beep = new Sound("beep", false);
+	public static Sound lair = new Sound("lair", true);
 	public static Sound lavender = new Sound("lavender", true);
 	public static Sound hongkong = new Sound("hongkong", true);
 
@@ -29,6 +30,8 @@ public class Sound {
 					synchronized (clip) {
 						clip.stop();
 						clip.setFramePosition(0);
+						FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+						gainControl.setValue(-10);
 						if (loop)
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 						else
