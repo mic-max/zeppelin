@@ -95,19 +95,4 @@ public class Player extends Entity {
 		hitbox.y = y;
 	}
 	
-	private void checkMovement(int xChange, int yChange) {
-		if(level.map.getTile(x + xChange, y + yChange).getWalkSolid())
-			return;
-		if(level.map.getTile(x + width + xChange, y + yChange).getWalkSolid())
-			return;
-		if(level.map.getTile(x + xChange, y + height + yChange).getWalkSolid())
-			return;
-		if(level.map.getTile(x + width + xChange, y + height + yChange).getWalkSolid())
-			return;
-		
-		x += xChange;
-		y += yChange;
-		hitbox.x = x; hitbox.y = y;
-	}
-	
 }
