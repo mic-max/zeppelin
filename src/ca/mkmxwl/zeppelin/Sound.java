@@ -24,7 +24,6 @@ public class Sound {
 	public void play() {
 		try {
 			new Thread() {
-				@Override
 				public void run() {
 					synchronized (clip) {
 						clip.stop();

@@ -52,7 +52,6 @@ public class Zepp extends Canvas implements Runnable {
 		}
 	}
 
-	@Override
 	public void run() {
 		final double NS_PER_UPDATE = 1000000000D / 60D;
 		long last = System.nanoTime();

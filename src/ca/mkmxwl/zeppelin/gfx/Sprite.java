@@ -13,7 +13,6 @@ public class Sprite {
 		height = sprite.getHeight();
 	}
 
-	// Getters
 	public BufferedImage getSprite() {
 		return sprite;
 	}

@@ -3,6 +3,7 @@ package ca.mkmxwl.zeppelin.level;
 import java.awt.*;
 import java.util.*;
 
+import ca.mkmxwl.zeppelin.*;
 import ca.mkmxwl.zeppelin.entities.*;
 
 public class Level {
@@ -20,7 +21,8 @@ public class Level {
 	}
 
 	public void render(Graphics2D g) {
-		// render level, i.e. wall, other static shit
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, Zepp.WIDTH, Zepp.HEIGHT);
 		for (Entity e : entities)
 			e.render(g);
 	}
