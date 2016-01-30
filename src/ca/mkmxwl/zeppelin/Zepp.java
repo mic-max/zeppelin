@@ -8,8 +8,8 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Zepp extends Canvas implements Runnable {
 
-	public static final int WIDTH = 436;
-	public static final int HEIGHT = 252;
+	public static final int WIDTH = 640;
+	public static final int HEIGHT = 480;
 	public static boolean running;
 
 	private Thread thread;
