@@ -8,17 +8,20 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Zepp extends Canvas implements Runnable {
 
-	public static final int WIDTH = 640;
-	public static final int HEIGHT = 480;
+	public static final int WIDTH = 480;
+	public static final int HEIGHT = 320;
 	public static boolean running;
 
 	private Thread thread;
 	private JFrame frame;
 	private Input input;
 	private Game game;
+	
+	private Graphics2D gScreen;
+	private BufferedImage image;
 
 	public Zepp() {
-		setSize(WIDTH, HEIGHT);
+		setSize(WIDTH * 2, HEIGHT * 2);
 
 		frame = new JFrame("Zeppelin");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +31,9 @@ public class Zepp extends Canvas implements Runnable {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		gScreen = (Graphics2D)image.getGraphics();
 
 		game = new Game();
 		input = new Input(this);
@@ -76,11 +82,13 @@ public class Zepp extends Canvas implements Runnable {
 	private void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
-			createBufferStrategy(3);
+			createBufferStrategy(2);
 			return;
 		}
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
-		game.render(g);
+		game.render(gScreen);
+		g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
+		
 		g.dispose();
 		bs.show();
 	}
