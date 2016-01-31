@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Entity {
 
-	int x, y, dir;
+	protected int x, y, dir;
 
 	public void update() {
 	}
