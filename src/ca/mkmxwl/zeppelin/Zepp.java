@@ -16,7 +16,7 @@ public class Zepp extends Canvas implements Runnable {
 	private JFrame frame;
 	private Input input;
 	private Game game;
-	
+
 	private Graphics2D gScreen;
 	private BufferedImage image;
 
@@ -31,9 +31,11 @@ public class Zepp extends Canvas implements Runnable {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
+		requestFocus();
+
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		gScreen = (Graphics2D)image.getGraphics();
+		gScreen = (Graphics2D) image.getGraphics();
 
 		game = new Game();
 		input = new Input(this);
@@ -88,7 +90,7 @@ public class Zepp extends Canvas implements Runnable {
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		game.render(gScreen);
 		g.drawImage(image, 0, 0, WIDTH * 2, HEIGHT * 2, null);
-		
+
 		g.dispose();
 		bs.show();
 	}

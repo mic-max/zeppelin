@@ -10,13 +10,14 @@ public class Player extends Entity {
 	private Level level;
 
 	private int speed = 2;
-	private int width = 13;
-	private int height = 22;
+	private int width = 12;
+	private int height = 10;
+	private int removeYHeight = 10;
 	public Rectangle hitbox;
-	private Sprite sprite;
+	private byte sprite;
 
 	public Player(Level level) {
-		this.sprite = Sprite.nawiboDown[0];
+		this.sprite = 0;
 		this.level = level;
 		this.x = level.spawnX;
 		this.y = level.spawnY;
@@ -27,21 +28,14 @@ public class Player extends Entity {
 
 	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d) {
 		move(uk, dk, rk, lk);
+		shoot(w, s, a, d);
+	}
 
-		if (w) {
-			System.out.println("w");
-		} else if (s) {
-			System.out.println("s");
-		}
-		if (a) {
-			System.out.println("a");
-		} else if (d) {
-			System.out.println("d");
-		}
+	private void shoot(boolean w, boolean s, boolean a, boolean d) {
 	}
 
 	public void render(Graphics2D g) {
-		g.drawImage(sprite.getSprite(), x, y, null);
+		g.drawImage(Sprite.nawiboDown[sprite].getSprite(), x, y, null);
 	}
 
 	private void move(boolean uk, boolean dk, boolean rk, boolean lk) {
@@ -57,18 +51,21 @@ public class Player extends Entity {
 		else if (lk)
 			xChange -= speed;
 
+		sprite++;
+		sprite %= 3;
+
 		moveX(xChange);
 		moveY(yChange);
 	}
 
 	private void moveX(int xChange) {
-		if (level.map.getTile(x + xChange, y).getWalkSolid())
+		if (level.map.getTile(x + xChange, y + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x + width + xChange, y).getWalkSolid())
+		if (level.map.getTile(x + width + xChange, y + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x + xChange, y + height).getWalkSolid())
+		if (level.map.getTile(x + xChange, y + height + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x + width + xChange, y + height).getWalkSolid())
+		if (level.map.getTile(x + width + xChange, y + height + removeYHeight).getWalkSolid())
 			return;
 
 		x += xChange;
@@ -76,13 +73,13 @@ public class Player extends Entity {
 	}
 
 	private void moveY(int yChange) {
-		if (level.map.getTile(x, y + yChange).getWalkSolid())
+		if (level.map.getTile(x, y + yChange + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x + width, y + yChange).getWalkSolid())
+		if (level.map.getTile(x + width, y + yChange + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x, y + height + yChange).getWalkSolid())
+		if (level.map.getTile(x, y + height + yChange + removeYHeight).getWalkSolid())
 			return;
-		if (level.map.getTile(x + width, y + height + yChange).getWalkSolid())
+		if (level.map.getTile(x + width, y + height + yChange + removeYHeight).getWalkSolid())
 			return;
 
 		y += yChange;

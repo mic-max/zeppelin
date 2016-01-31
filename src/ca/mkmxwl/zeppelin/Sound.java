@@ -31,7 +31,7 @@ public class Sound {
 						clip.stop();
 						clip.setFramePosition(0);
 						FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-						gainControl.setValue(-10);
+						gainControl.setValue(-30);
 						if (loop)
 							clip.loop(Clip.LOOP_CONTINUOUSLY);
 						else
