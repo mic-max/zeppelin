@@ -9,7 +9,7 @@ public class Player extends Entity {
 
 	private Level level;
 
-	private int speed = 5;
+	private int speed = 2;
 	private int width = 13;
 	private int height = 22;
 	public Rectangle hitbox;
