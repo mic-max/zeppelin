@@ -32,13 +32,13 @@ public class Zepp extends Canvas implements Runnable {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		requestFocus();
-
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		gScreen = (Graphics2D) image.getGraphics();
 
 		game = new Game();
 		input = new Input(this);
+
+		requestFocus();
 	}
 
 	public synchronized void start() {
