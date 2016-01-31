@@ -47,14 +47,15 @@ public class Level {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Zepp.WIDTH, Zepp.HEIGHT);
 		map.render(g);
-		for (Entity e : entities)
-			e.render(g);
 		for (Particle p: particles)
 			p.render(g);
+		for (Entity e : entities)
+			e.render(g);
 	}
 	
 	private void checkLists() {
-		for(Particle p: particles) {
+		for(int i = 0; i < particles.size(); i++) {
+			Particle p = particles.get(i);
 			if(p.shouldRemove) 
 				particles.remove(p);
 		}

@@ -1,9 +1,13 @@
 package ca.mkmxwl.zeppelin.entities;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
-import ca.mkmxwl.zeppelin.gfx.*;
-import ca.mkmxwl.zeppelin.level.*;
+import ca.mkmxwl.zeppelin.gfx.Particle;
+import ca.mkmxwl.zeppelin.gfx.Particle.Type;
+import ca.mkmxwl.zeppelin.gfx.Sprite;
+import ca.mkmxwl.zeppelin.level.Level;
 
 public class Player extends Entity {
 
@@ -13,6 +17,13 @@ public class Player extends Entity {
 	private int width = 12;
 	private int height = 10;
 	private int removeYHeight = 10;
+	
+	// Moving particle stats
+	private int particleAmount = 4;
+	private Color pColor = Color.RED;
+	private int pLife = 10;
+	private float pSpeed = 1f;
+	
 	public Rectangle hitbox;
 	private byte sprite;
 
@@ -67,7 +78,13 @@ public class Player extends Entity {
 			return;
 		if (level.map.getTile(x + width + xChange, y + height + removeYHeight).getWalkSolid())
 			return;
-
+		
+		if(xChange != 0) {
+			for(int i = 0; i < particleAmount; i++) {
+				level.particles.add(new Particle(x + (width / 2), y + height + 10, pLife, pSpeed, pColor, Type.PLAYER));
+			}
+		}
+		
 		x += xChange;
 		hitbox.x = x;
 	}
@@ -81,6 +98,12 @@ public class Player extends Entity {
 			return;
 		if (level.map.getTile(x + width, y + height + yChange + removeYHeight).getWalkSolid())
 			return;
+		
+		if(yChange != 0) {
+			for(int i = 0; i < particleAmount; i++) {
+				level.particles.add(new Particle(x + (width / 2), y + height + 10, pLife, pSpeed, pColor, Type.PLAYER));
+			}
+		}
 
 		y += yChange;
 		hitbox.y = y;
