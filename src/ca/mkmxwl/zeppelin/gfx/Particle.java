@@ -6,13 +6,17 @@ import java.util.Random;
 
 public class Particle {
 
+	public boolean shouldRemove;
 	public float x, y;
+	
 	private float speed = 2;
 	private float xSpeed, ySpeed;
 	
 	private Color color;
+	private int lifetime;
 	
-	public Particle(float x, float y, Color color) {
+	public Particle(float x, float y, int lifetime, Color color) {
+		this.lifetime = lifetime;
 		this.x = x;
 		this.y = y;
 		this.color = color;
@@ -22,6 +26,10 @@ public class Particle {
 	}
 	
 	public void update() {
+		lifetime--;
+		if(lifetime <= 0)
+			shouldRemove = true;
+		
 		x += xSpeed;
 		y += ySpeed;
 	}

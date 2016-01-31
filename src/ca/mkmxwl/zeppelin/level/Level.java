@@ -1,15 +1,21 @@
 package ca.mkmxwl.zeppelin.level;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 
-import ca.mkmxwl.zeppelin.*;
-import ca.mkmxwl.zeppelin.entities.*;
+import ca.mkmxwl.zeppelin.Game;
+import ca.mkmxwl.zeppelin.Sound;
+import ca.mkmxwl.zeppelin.Zepp;
+import ca.mkmxwl.zeppelin.entities.Entity;
+import ca.mkmxwl.zeppelin.entities.Player;
+import ca.mkmxwl.zeppelin.gfx.Particle;
 
 public class Level {
 
 	public Player player;
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
+	public ArrayList<Particle> particles = new ArrayList<Particle>();
 	protected Sound background;
 	public int spawnX, spawnY, spawnDir;
 	public Tilemap map;
@@ -32,6 +38,9 @@ public class Level {
 		map.update();
 		for (Entity e : entities)
 			e.update();
+		for (Particle p: particles)
+			p.update();
+		checkLists();
 	}
 
 	public void render(Graphics2D g) {
@@ -40,5 +49,14 @@ public class Level {
 		map.render(g);
 		for (Entity e : entities)
 			e.render(g);
+		for (Particle p: particles)
+			p.render(g);
+	}
+	
+	private void checkLists() {
+		for(Particle p: particles) {
+			if(p.shouldRemove) 
+				particles.remove(p);
+		}
 	}
 }
