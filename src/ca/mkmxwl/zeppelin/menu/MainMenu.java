@@ -23,7 +23,7 @@ public class MainMenu extends Menu {
 				game.newGame();
 				break;
 			case 1:
-				// game.setMenu(new AboutMenu());
+				game.setMenu(new AboutMenu());
 				break;
 			default:
 				System.exit(0);

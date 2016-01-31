@@ -1,16 +1,17 @@
 package ca.mkmxwl.zeppelin.gfx;
 
 import java.awt.image.*;
-import java.io.IOException;
+import java.io.*;
 
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 
 public class Sprite {
 
 	public static Sprite dirt = new Sprite(0, 0, SpriteSheet.tiles);
 	public static Sprite stoneWall = new Sprite(1, 0, SpriteSheet.tiles);
 
-	public static Sprite nawibo = new Sprite(0, 0, SpriteSheet.nawibo);
+	public static Sprite[] nawiboDown = { new Sprite(0, 0, SpriteSheet.nawibo), new Sprite(1, 0, SpriteSheet.nawibo), new Sprite(2, 0, SpriteSheet.nawibo) };
+	public static Sprite[] nawiboUp = { new Sprite(0, 1, SpriteSheet.nawibo), new Sprite(1, 1, SpriteSheet.nawibo), new Sprite(2, 1, SpriteSheet.nawibo) };
 
 	private BufferedImage sprite;
 	private int width, height;

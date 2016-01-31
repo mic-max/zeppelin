@@ -13,21 +13,19 @@ public class Player extends Entity {
 	private int width = 13;
 	private int height = 22;
 	public Rectangle hitbox;
+	private Sprite sprite;
 
 	public Player(Level level) {
+		this.sprite = Sprite.nawiboDown[0];
 		this.level = level;
 		this.x = level.spawnX;
 		this.y = level.spawnY;
 		this.dir = level.spawnDir;
-		level.entities.add(this);
+		this.level.entities.add(this);
 		hitbox = new Rectangle(x, y, width, height);
 	}
 
 	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d) {
-		// up to go forward through door
-		// left & right to move
-		// down to crouch / hide
-		// need an interact key
 		move(uk, dk, rk, lk);
 
 		if (w) {
@@ -43,7 +41,7 @@ public class Player extends Entity {
 	}
 
 	public void render(Graphics2D g) {
-		g.drawImage(Sprite.nawibo.getSprite(), x, y, null);
+		g.drawImage(sprite.getSprite(), x, y, null);
 	}
 
 	private void move(boolean uk, boolean dk, boolean rk, boolean lk) {
@@ -52,11 +50,11 @@ public class Player extends Entity {
 
 		if (uk)
 			yChange -= speed;
-		if (dk)
+		else if (dk)
 			yChange += speed;
 		if (rk)
 			xChange += speed;
-		if (lk)
+		else if (lk)
 			xChange -= speed;
 
 		moveX(xChange);
@@ -90,5 +88,4 @@ public class Player extends Entity {
 		y += yChange;
 		hitbox.y = y;
 	}
-
 }

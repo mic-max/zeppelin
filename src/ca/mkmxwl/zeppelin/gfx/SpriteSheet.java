@@ -1,9 +1,9 @@
 package ca.mkmxwl.zeppelin.gfx;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.image.*;
+import java.io.*;
 
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 
 public class SpriteSheet {
 

@@ -3,11 +3,11 @@ package ca.mkmxwl.zeppelin.menu;
 import java.awt.*;
 
 import ca.mkmxwl.zeppelin.*;
+import ca.mkmxwl.zeppelin.gfx.*;
 
-public class PauseMenu extends Menu {
-
-	public PauseMenu() {
-		this.options = new String[] { "Resume", "Exit" };
+public class AboutMenu extends Menu {
+	public AboutMenu() {
+		this.options = new String[] { "Exit" };
 		this.background = null;
 	}
 
@@ -16,9 +16,6 @@ public class PauseMenu extends Menu {
 
 		if (enter) {
 			switch (selected) {
-			case 0:
-				game.setMenu(null);
-				break;
 			default:
 				game.setMenu(new MainMenu());
 			}
@@ -26,8 +23,10 @@ public class PauseMenu extends Menu {
 	}
 
 	public void render(Graphics2D g) {
-		g.setColor(new Color(20, 24, 22));
-		g.fillRect(20, 20, 64, options.length * 40 - 8);
+		g.drawImage(SpriteSheet.mainMenu.getSheet(), 0, 0, Zepp.WIDTH, Zepp.HEIGHT, null);
 		super.render(g);
+		g.setColor(Color.CYAN);
+		g.drawString("Michael Maxwell", 300, 40);
+		g.drawString("Brady Jessup", 300, 70);
 	}
 }
