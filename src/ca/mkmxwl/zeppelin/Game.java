@@ -45,7 +45,7 @@ public class Game {
 		if (menu != null)
 			menu.update(this, uk, dk, enter);
 		else {
-			player.update(uk, dk, lk, rk, w, s, a, d);
+			player.update(w, s, a, d, uk, dk, lk, rk);
 			level.update();
 		}
 	}

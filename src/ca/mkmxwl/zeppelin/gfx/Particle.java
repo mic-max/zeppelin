@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import ca.mkmxwl.zeppelin.Zepp;
+
 public class Particle {
 
 	public enum Type {
@@ -52,6 +54,12 @@ public class Particle {
 	}
 	
 	public void render(Graphics2D g) {
+		// Bounds
+		if(x < 0 || x > Zepp.WIDTH || y < 0 || y > Zepp.HEIGHT) {
+			shouldRemove = true;
+			return;
+		}
+		
 		g.setColor(color);
 		g.fillRect((int)x, (int)y, 1, 1);
 	}

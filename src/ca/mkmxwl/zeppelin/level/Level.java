@@ -10,12 +10,14 @@ import ca.mkmxwl.zeppelin.Zepp;
 import ca.mkmxwl.zeppelin.entities.Entity;
 import ca.mkmxwl.zeppelin.entities.Player;
 import ca.mkmxwl.zeppelin.gfx.Particle;
+import ca.mkmxwl.zeppelin.gfx.Projectile;
 
 public class Level {
 
 	public Player player;
 	public ArrayList<Entity> entities = new ArrayList<Entity>();
 	public ArrayList<Particle> particles = new ArrayList<Particle>();
+	public ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	protected Sound background;
 	public int spawnX, spawnY, spawnDir;
 	public Tilemap map;
@@ -40,6 +42,8 @@ public class Level {
 			e.update();
 		for (Particle p: particles)
 			p.update();
+		for (Projectile p: projectiles)
+			p.update();
 		checkLists();
 	}
 
@@ -48,6 +52,8 @@ public class Level {
 		g.fillRect(0, 0, Zepp.WIDTH, Zepp.HEIGHT);
 		map.render(g);
 		for (Particle p: particles)
+			p.render(g);
+		for (Projectile p: projectiles)
 			p.render(g);
 		for (Entity e : entities)
 			e.render(g);
@@ -58,6 +64,11 @@ public class Level {
 			Particle p = particles.get(i);
 			if(p.shouldRemove) 
 				particles.remove(p);
+		}
+		for(int i = 0; i < projectiles.size(); i++) {
+			Projectile p = projectiles.get(i);
+			if(p.shouldRemove)
+				projectiles.remove(p);
 		}
 	}
 }

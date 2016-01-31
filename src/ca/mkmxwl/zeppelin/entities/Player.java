@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 
 import ca.mkmxwl.zeppelin.gfx.Particle;
 import ca.mkmxwl.zeppelin.gfx.Particle.Type;
+import ca.mkmxwl.zeppelin.gfx.Projectile;
 import ca.mkmxwl.zeppelin.gfx.Sprite;
 import ca.mkmxwl.zeppelin.level.Level;
 
@@ -23,6 +24,12 @@ public class Player extends Entity {
 	private Color pColor = Color.RED;
 	private int pLife = 10;
 	private float pSpeed = 1f;
+	// Projectile stats
+	final int P_COOLDOWN = 30;
+	private int currentPCooldown = P_COOLDOWN;
+	private float projectileSpeed = 3.1f;
+	private int projectileLife = 200;
+	private Color projectileCol = Color.RED;
 
 	public Rectangle hitbox;
 	private byte sprite;
@@ -43,6 +50,31 @@ public class Player extends Entity {
 	}
 
 	private void shoot(boolean w, boolean s, boolean a, boolean d) {
+		currentPCooldown--;
+		if (currentPCooldown <= 0) {
+			// Make sure int doesn't get too negative
+			if (currentPCooldown <= -100000)
+				currentPCooldown = 0;
+
+			// Check to see if the player is shooting
+			checkShoot(w, s, a, d);
+		}
+
+	}
+
+	private void checkShoot(boolean w, boolean s, boolean a, boolean d) {
+		if (w || s || a || d) {
+			currentPCooldown = P_COOLDOWN;
+
+			if (w)
+				level.projectiles.add(new Projectile(x + width / 2, y + height / 2, projectileLife, 0f, -projectileSpeed, projectileCol, level));
+			else if (s)
+				level.projectiles.add(new Projectile(x + width / 2, y + height / 2, projectileLife, 0f, projectileSpeed, projectileCol, level));
+			else if (d)
+				level.projectiles.add(new Projectile(x + width / 2, y + height / 2, projectileLife, projectileSpeed, 0f, projectileCol, level));
+			else if (a)
+				level.projectiles.add(new Projectile(x + width / 2, y + height / 2, projectileLife, -projectileSpeed, 0f, projectileCol, level));
+		}
 	}
 
 	public void render(Graphics2D g) {
