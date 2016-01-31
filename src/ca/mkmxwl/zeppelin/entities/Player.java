@@ -2,15 +2,16 @@ package ca.mkmxwl.zeppelin.entities;
 
 import java.awt.*;
 
+import ca.mkmxwl.zeppelin.gfx.*;
 import ca.mkmxwl.zeppelin.level.*;
 
 public class Player extends Entity {
-	
+
 	private Level level;
-	
+
 	private int speed = 5;
-	private int width = 10;
-	private int height = 10;
+	private int width = 13;
+	private int height = 22;
 	public Rectangle hitbox;
 
 	public Player(Level level) {
@@ -22,7 +23,7 @@ public class Player extends Entity {
 		hitbox = new Rectangle(x, y, width, height);
 	}
 
-	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d, boolean shoot) {
+	public void update(boolean uk, boolean dk, boolean lk, boolean rk, boolean w, boolean s, boolean a, boolean d) {
 		// up to go forward through door
 		// left & right to move
 		// down to crouch / hide
@@ -39,60 +40,55 @@ public class Player extends Entity {
 		} else if (d) {
 			System.out.println("d");
 		}
-
-		if (shoot) {
-			System.out.println("shoot");
-		}
 	}
 
 	public void render(Graphics2D g) {
-		g.setColor(Color.RED);
-		g.fillRect(x, y, 10, 10);
+		g.drawImage(Sprite.nawibo.getSprite(), x, y, null);
 	}
-	
+
 	private void move(boolean uk, boolean dk, boolean rk, boolean lk) {
 		int xChange = 0;
 		int yChange = 0;
-		
-		if(uk)
+
+		if (uk)
 			yChange -= speed;
-		if(dk)
+		if (dk)
 			yChange += speed;
-		if(rk)
+		if (rk)
 			xChange += speed;
-		if(lk)
+		if (lk)
 			xChange -= speed;
-		
+
 		moveX(xChange);
 		moveY(yChange);
 	}
-	
+
 	private void moveX(int xChange) {
-		if(level.map.getTile(x + xChange, y).getWalkSolid())
+		if (level.map.getTile(x + xChange, y).getWalkSolid())
 			return;
-		if(level.map.getTile(x + width + xChange, y).getWalkSolid())
+		if (level.map.getTile(x + width + xChange, y).getWalkSolid())
 			return;
-		if(level.map.getTile(x + xChange, y + height).getWalkSolid())
+		if (level.map.getTile(x + xChange, y + height).getWalkSolid())
 			return;
-		if(level.map.getTile(x + width + xChange, y + height).getWalkSolid())
+		if (level.map.getTile(x + width + xChange, y + height).getWalkSolid())
 			return;
-		
+
 		x += xChange;
 		hitbox.x = x;
 	}
-	
+
 	private void moveY(int yChange) {
-		if(level.map.getTile(x, y + yChange).getWalkSolid())
+		if (level.map.getTile(x, y + yChange).getWalkSolid())
 			return;
-		if(level.map.getTile(x + width, y + yChange).getWalkSolid())
+		if (level.map.getTile(x + width, y + yChange).getWalkSolid())
 			return;
-		if(level.map.getTile(x, y + height + yChange).getWalkSolid())
+		if (level.map.getTile(x, y + height + yChange).getWalkSolid())
 			return;
-		if(level.map.getTile(x + width, y + height + yChange).getWalkSolid())
+		if (level.map.getTile(x + width, y + height + yChange).getWalkSolid())
 			return;
-		
+
 		y += yChange;
 		hitbox.y = y;
 	}
-	
+
 }

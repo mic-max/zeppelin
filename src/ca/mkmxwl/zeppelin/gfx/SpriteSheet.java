@@ -13,6 +13,7 @@ public class SpriteSheet {
 
 	public static SpriteSheet mainMenu = new SpriteSheet("/mainmenu.png", 0, 0);
 	public static SpriteSheet tiles = new SpriteSheet("/tiles.bmp", 32, 32);
+	public static SpriteSheet nawibo = new SpriteSheet("/gfx/nawibo.png", 32, 32);
 
 	public SpriteSheet(String file, int spriteWidth, int spriteHeight) {
 		this.spriteWidth = spriteWidth;

@@ -9,7 +9,9 @@ public class Sprite {
 
 	public static Sprite dirt = new Sprite(0, 0, SpriteSheet.tiles);
 	public static Sprite stoneWall = new Sprite(1, 0, SpriteSheet.tiles);
-	
+
+	public static Sprite nawibo = new Sprite(0, 0, SpriteSheet.nawibo);
+
 	private BufferedImage sprite;
 	private int width, height;
 
@@ -18,7 +20,7 @@ public class Sprite {
 		width = sprite.getWidth();
 		height = sprite.getHeight();
 	}
-	
+
 	public Sprite(String path) {
 		try {
 			sprite = ImageIO.read(Sprite.class.getResourceAsStream(path));
